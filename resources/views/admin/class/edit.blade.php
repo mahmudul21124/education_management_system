@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Admin</h1>
+                        <h1>Edit Class</h1>
                     </div>
                     
                 </div>
@@ -23,7 +23,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Edit Admin</h3>
+                                <h3 class="card-title">Edit Class</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -31,24 +31,22 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" name="name" value="{{old('name', $getRecord->name)}}" required class="form-control"
-                                            placeholder="Enter Name">
+                                        <label>Class Name</label>
+                                        <input type="text" name="name" value="{{$getRecord->name}}" required class="form-control"
+                                            placeholder="Enter Class Name">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Email address</label>
-                                        <input type="email" name="email" value="{{old('email', $getRecord->email)}}" required class="form-control"
-                                            placeholder="Enter email">
-                                        <div style="color: red">{{$errors->first('email')}}</div>
+                                        <label>Status</label>
+                                        <select name="status" class="form-control">
+                                            <option value="">Select One</option>
+                                            <option {{ ($getRecord->status == 0) ? 'selected' : ''}} value="0">Active</option>
+                                            <option {{ ($getRecord->status == 1) ? 'selected' : ''}} value="1">Inactive</option>
+                                        </select>
+                                        
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="text" name="password" class="form-control"
-                                            placeholder="Password">
-                                            <p>Do you wat to change password so please add new password</p>
-                                    </div>
+                                    
                                     
                                 </div>
                                 <!-- /.card-body -->

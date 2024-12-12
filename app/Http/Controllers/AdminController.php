@@ -22,6 +22,10 @@ class AdminController extends Controller
 
     public function insert(Request $request){
         //dd($request->all());
+        request()->validate([
+            'email' => 'required|email|unique:users',
+        ]);
+
         $user = new User;
         $user->name = trim($request->name);
         $user->email = trim($request->email);
@@ -45,6 +49,11 @@ class AdminController extends Controller
 
     public function update($id, Request $request){
         //dd($request->all());
+
+        request()->validate([
+            'email' => 'required|email|unique:users,email,'.$id,
+        ]);
+
         $user = User::getSingle($id);
         $user->name = trim($request->name);
         $user->email = trim($request->email);
