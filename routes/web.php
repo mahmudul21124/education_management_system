@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,12 +38,29 @@ Route::post('reset/{token}', [AuthController::class, 'PostReset'])->name('PostRe
 // Middleware
 Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+    
     Route::get('admin/admin/list', [AdminController::class, 'list'])->name('admin.list');
     Route::get('admin/admin/add', [AdminController::class, 'add'])->name('admin.add');
     Route::post('admin/admin/add', [AdminController::class, 'insert']);
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+
+    // Teacher 
+    Route::get('admin/teacher/list', [TeacherController::class, 'list'])->name('teacher.list');
+    Route::get('admin/teacher/add', [TeacherController::class, 'add'])->name('teacher.add');
+    Route::post('admin/teacher/add', [TeacherController::class, 'insert']);
+    Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
+    Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
+    Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete'])->name('teacher.delete');
+
+    // Student 
+    Route::get('admin/student/list', [StudentController::class, 'list'])->name('student.list');
+    Route::get('admin/student/add', [StudentController::class, 'add'])->name('student.add');
+    Route::post('admin/student/add', [StudentController::class, 'insert']);
+    Route::get('admin/student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
+    Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
+    Route::get('admin/student/delete/{id}', [StudentController::class, 'delete'])->name('student.delete');
 
     // Class Routes
     Route::get('admin/class/list', [ClassController::class, 'list'])->name('class.list');
@@ -66,6 +85,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'edit'])->name('assign_subject.edit');
     Route::post('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'update']);
     Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete'])->name('assign_subject.delete');
+    Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single'])->name('assign_subject.edit_single');
+    Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
 });
 
 Route::group(['middleware' => 'teacher'], function () {

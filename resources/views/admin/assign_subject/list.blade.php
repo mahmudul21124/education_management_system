@@ -106,6 +106,8 @@
                                                 <td>
                                                     <a href="{{ route('assign_subject.edit', $value->id) }}"
                                                         class="btn btn-primary">Edit</a>
+                                                        <a href="{{ route('assign_subject.edit_single', $value->id) }}"
+                                                            class="btn btn-primary">Edit Single</a>
                                                     <a href="{{ route('assign_subject.delete', $value->id) }}"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>

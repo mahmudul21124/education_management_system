@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2024 at 01:29 AM
+-- Generation Time: Dec 14, 2024 at 07:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,11 +68,9 @@ CREATE TABLE `class_subject` (
 
 INSERT INTO `class_subject` (`id`, `class_id`, `subject_id`, `created_by`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 3, 1, 0, 0, '2024-12-13 23:15:20', '2024-12-13 23:46:37'),
-(2, 1, 2, 1, 0, 0, '2024-12-13 23:36:09', '2024-12-13 23:44:32'),
-(3, 1, 4, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10'),
-(4, 1, 1, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10'),
-(6, 2, 2, 1, 0, 0, '2024-12-14 00:17:52', '2024-12-14 00:17:52'),
-(7, 2, 3, 1, 0, 0, '2024-12-14 00:17:52', '2024-12-14 00:17:52');
+(2, 1, 2, 1, 0, 0, '2024-12-13 23:36:09', '2024-12-14 10:45:57'),
+(3, 1, 4, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-14 10:46:05'),
+(4, 1, 1, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10');
 
 -- --------------------------------------------------------
 
@@ -179,11 +177,29 @@ INSERT INTO `subject` (`id`, `name`, `type`, `created_by`, `status`, `is_delete`
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `admission_number` varchar(50) DEFAULT NULL,
+  `roll_number` varchar(50) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `gender` varchar(50) NOT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `religion` varchar(50) DEFAULT NULL,
+  `mobile_number` varchar(15) DEFAULT NULL,
+  `admission_date` date DEFAULT NULL,
+  `profile_pic` varchar(100) DEFAULT NULL,
+  `blood_group` varchar(10) DEFAULT NULL,
+  `merital_status` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `permanent_address` varchar(255) DEFAULT NULL,
+  `qualification` varchar(255) DEFAULT NULL,
+  `work_experience` varchar(255) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
   `user_type` tinyint(4) NOT NULL DEFAULT 3 COMMENT '1: admin, 2: teahcer, 3: student, 4: parent ',
   `is_delete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:not deleted, 1:deleted',
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:active, 1:inactive',
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -193,13 +209,19 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `user_type`, `is_delete`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mahmudul', 'admin@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', 1, 0, 'cMDFefjusZ9I9EVopQxcetk6USXMxbQULUWXeRNwMtt1MvwBQYRZwON3u9KE', NULL, '2024-12-10 09:22:59'),
-(2, 'teacher', 'teacher@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', 2, 0, NULL, NULL, NULL),
-(3, 'student', 'student@gmail.com', NULL, '$2y$10$q69o6grdsexsThtUNUEECOhdK5hRM2bH/UCtixfYFdcChmUvfFDY6', 3, 0, 'Tw46YKpd9XJsr3zWDGXHSg5rLnibKniQcDnzwrncWpq8aPw1CFRzAcPWGf6q', NULL, '2024-12-10 09:55:36'),
-(4, 'parent', 'parent@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', 4, 0, NULL, NULL, NULL),
-(5, 'Mahmudul Haque', 'rakib21124@gmail.com', NULL, '$2y$10$cksCc3AkKfL3RFQWDzj/kuCFA1R2YSrckHeoZ68St115hLGf/VR8y', 1, 0, NULL, '2024-12-10 12:11:20', '2024-12-10 13:12:16'),
-(6, 'Rakib', 'rakib11@gmail.com', NULL, '$2y$10$7699Z.mHDu4M3uSX1t838.4zOUl0.hr4f8FtvMEQ.BPt8Xh6SLXli', 1, 0, NULL, '2024-12-10 12:31:34', '2024-12-12 12:48:23');
+INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `merital_status`, `address`, `permanent_address`, `qualification`, `work_experience`, `note`, `user_type`, `is_delete`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Mahmudul', NULL, 'admin@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, 'cMDFefjusZ9I9EVopQxcetk6USXMxbQULUWXeRNwMtt1MvwBQYRZwON3u9KE', NULL, '2024-12-10 09:22:59'),
+(2, 'teacher', NULL, 'teacher@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 0, 0, NULL, NULL, NULL),
+(3, 'student', 'd', 'student@gmail.com', NULL, '$2y$10$q69o6grdsexsThtUNUEECOhdK5hRM2bH/UCtixfYFdcChmUvfFDY6', 'asdfsadf', 'asdfsdafa', 2, 'Male', '2024-12-05', 'Islam', 'asfsdfsadfsdf', '2024-12-13', '20241214031019unvudyczciekjt3wyett.jpg', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, 'Tw46YKpd9XJsr3zWDGXHSg5rLnibKniQcDnzwrncWpq8aPw1CFRzAcPWGf6q', NULL, '2024-12-14 09:19:36'),
+(4, 'parent', NULL, 'parent@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 0, 0, NULL, NULL, NULL),
+(5, 'Mahmudul Haque', NULL, 'rakib21124@gmail.com', NULL, '$2y$10$cksCc3AkKfL3RFQWDzj/kuCFA1R2YSrckHeoZ68St115hLGf/VR8y', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, NULL, '2024-12-10 12:11:20', '2024-12-10 13:12:16'),
+(6, 'Rakib', NULL, 'rakib11@gmail.com', NULL, '$2y$10$7699Z.mHDu4M3uSX1t838.4zOUl0.hr4f8FtvMEQ.BPt8Xh6SLXli', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, NULL, '2024-12-10 12:31:34', '2024-12-12 12:48:23'),
+(7, 'Dante Mendez1', 'Espinoza1', 'qeqodemaj1@mailinator.com', NULL, '$2y$10$bRre0WMANh3Bbqt2R4QZMe640.ANrpjudThsHP/0JfPvdztNZTeNe', '396111', '801111', 2, 'Male', '2001-02-25', 'Esse id provident', '62314256456546', '2002-05-30', '20241214025552yn04fcwujr6ufjjsa2us.jpg', 'Est ip', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, NULL, '2024-12-14 07:53:05', '2024-12-14 08:55:52'),
+(8, 'Arden Kennedy', 'Guzman', 'toxomi@mailinator.com', NULL, '$2y$10$FIHu8vuqMFcZOoCq9G6s7.CDBobWVvc1TamMXxWBFp4zuJyAMIkA2', '450', '665', 2, 'Female', '1989-03-05', 'Mollit necessitatibu', '20045646456456', '1984-11-08', '20241214020211ldkugww6zydmgoknkhdi.jpg', 'Saepe', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, NULL, '2024-12-14 08:02:11', '2024-12-14 10:07:26'),
+(9, 'Kristen Guthrie', 'Cochran', 'waku@mailinator.com', NULL, '$2y$10$.IQPaqWZEVrKuO.AgAnwdu9O43df6r9Uzsa7sCwbY4N/QEPABCmKy', '271', '168', 1, 'Female', '2017-05-29', 'Est tempor ut sint', '5251453645345', '2015-04-14', '20241214025954fbpjybwhdzcsxfjeme3c.png', 'Neces', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 1, NULL, '2024-12-14 08:18:05', '2024-12-14 11:01:41'),
+(10, 'Sadia', 'Islam', 'sadia@gmail.com', NULL, '$2y$10$8XSntFVlrX6xb3cdbaklZOeXq233HFbW3yD.OaHKk.pdIWhTzyAVi', 'S1000', '142165', 2, 'Female', '2024-12-12', 'Islam', '01988674940', '2024-12-14', '20241214031908ijxcxrdlh17pah7bmgwk.png', 'lkjfds', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, NULL, '2024-12-14 09:19:08', '2024-12-14 09:19:08'),
+(11, 'Deanna Riley', 'Hays', 'xakimamy@mailinator.com', NULL, '$2y$10$eEKpy4np/SEIE8L7vgTa5ewgZtXy9e4fEf7TQ9/rqOI.jQIU0UAQq', NULL, NULL, NULL, 'Female', '1997-06-01', 'Rem minim unde praes', '888456546456456', '1977-09-15', '20241214062425tkchn5n6bohc8yqpglmj.jpg', NULL, 'Provident optio qu', 'Iusto maxime iste in', 'Veritatis nihil exce', 'Reprehenderit accus', 'In sit ducimus sed', 'Consequatur odio min', 2, 0, 0, NULL, '2024-12-14 12:08:10', '2024-12-14 12:24:25'),
+(12, 'Stacey Black', 'Calhoun', 'byrekucyp@mailinator.com', NULL, '$2y$10$t3O7xjNRrRlhGBlhjm7.HOLfEd2n8xY7wfIteJtPamna7ZalE/mR2', NULL, NULL, NULL, 'Male', '2022-01-01', 'Cupidatat in ipsa e', '180456345645', '1992-09-12', '20241214060845mfzxrql7jyrndnyk3yk6.jpeg', NULL, 'Et labore sapiente s', 'Fugiat in velit est', 'Enim hic sapiente ul', 'Rerum mollit sint ma', 'Est dolorem aliquam', 'In exercitationem qu', 2, 0, 1, NULL, '2024-12-14 12:08:45', '2024-12-14 12:23:49');
 
 --
 -- Indexes for dumped tables
@@ -301,7 +323,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

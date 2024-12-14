@@ -84,7 +84,7 @@ class ClassSubjectController extends Controller
                 }
             }
         }
-        
+
         return redirect('admin/assign_subject/list')->with('success', "Subject successfully Assign to Class");
     }
 
@@ -95,5 +95,40 @@ class ClassSubjectController extends Controller
         $save->save();
 
         return redirect('admin/assign_subject/list')->with('warning', "Record successfully Deleted");
+    }
+
+    public function edit_single($id)
+    {
+        $getRecord = ClassSubject::getSingle($id);
+        if (!empty($getRecord)) {
+            $data['getRecord'] = $getRecord;
+            $data['getClass'] = ClassModel::getClass();
+            $data['getSubject'] = Subject::getSubject();
+            $data['header_title'] = 'Edit Assign Subject';
+            return view('admin.assign_subject.edit_single', $data);
+        } else {
+            abort(404);
+        }
+    }
+
+    public function update_single($id, Request $request)
+    {
+        $getAlreadyFirst = ClassSubject::getAlreadyFirst($request->class_id, $request->subject_id);
+        if (!empty($getAlreadyFirst)) {
+
+            $getAlreadyFirst->status = $request->status;
+            $getAlreadyFirst->save();
+
+            return redirect('admin/assign_subject/list')->with('success', "Status successfully Updated");
+        } 
+        else {
+            $save = ClassSubject::getSingle($id);
+            $save->class_id = $request->class_id;
+            $save->subject_id = $request->subject_id;
+            $save->status = $request->status;
+            $save->save();
+
+            return redirect('admin/assign_subject/list')->with('success', "Subject successfully Assign to Class");
+        }
     }
 }
