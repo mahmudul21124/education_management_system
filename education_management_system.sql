@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2024 at 07:59 PM
+-- Generation Time: Dec 14, 2024 at 01:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,6 +44,35 @@ CREATE TABLE `class` (
 INSERT INTO `class` (`id`, `name`, `status`, `is_delete`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 'Six', 0, 0, 1, '2024-12-12 16:01:58', '2024-12-12 18:51:29'),
 (2, 'Seven', 0, 0, 1, '2024-12-12 16:03:21', '2024-12-12 18:49:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_subject`
+--
+
+CREATE TABLE `class_subject` (
+  `id` int(11) NOT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `subject_id` int(11) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:not, 1:yes',
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:active, 1:inactive',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class_subject`
+--
+
+INSERT INTO `class_subject` (`id`, `class_id`, `subject_id`, `created_by`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 1, 0, 0, '2024-12-13 23:15:20', '2024-12-13 23:46:37'),
+(2, 1, 2, 1, 0, 0, '2024-12-13 23:36:09', '2024-12-13 23:44:32'),
+(3, 1, 4, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10'),
+(4, 1, 1, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10'),
+(6, 2, 2, 1, 0, 0, '2024-12-14 00:17:52', '2024-12-14 00:17:52'),
+(7, 2, 3, 1, 0, 0, '2024-12-14 00:17:52', '2024-12-14 00:17:52');
 
 -- --------------------------------------------------------
 
@@ -117,6 +146,33 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subject`
+--
+
+CREATE TABLE `subject` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:active, 1:inactive',
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:not, 1:yes',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`id`, `name`, `type`, `created_by`, `status`, `is_delete`, `created_at`, `updated_at`) VALUES
+(1, 'Bangla', 'Practical', 1, 0, 0, '2024-12-13 22:01:13', '2024-12-13 22:09:43'),
+(2, 'English', 'Theory', 1, 0, 0, '2024-12-13 22:07:09', '2024-12-13 22:50:24'),
+(3, 'Biology', 'Practical', 1, 0, 0, '2024-12-13 22:07:24', '2024-12-13 22:09:29'),
+(4, 'Biology', 'Practical', 1, 0, 0, '2024-12-13 22:07:36', '2024-12-13 22:50:36');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -156,6 +212,12 @@ ALTER TABLE `class`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `class_subject`
+--
+ALTER TABLE `class_subject`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -183,6 +245,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -198,6 +266,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `class`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `class_subject`
+--
+ALTER TABLE `class_subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -216,6 +290,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
