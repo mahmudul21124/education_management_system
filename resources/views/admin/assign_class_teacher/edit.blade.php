@@ -44,13 +44,24 @@
 
                                     <div class="form-group">
                                         <label>Teacher Name</label>
-                                        <select name="teacher_id" class="form-control">
-                                            <option value="">Select One</option>
-                                            @foreach ($getTeacher as $teacher)
-                                                <option {{ $getRecord->teacher_id == $teacher->id ? 'selected' : '' }}
-                                                    value="{{ $teacher->id }}">{{ $teacher->name }} {{ $teacher->last_name }}</option>
-                                            @endforeach
-                                        </select>
+                                        @foreach ($getTeacher as $teacher)
+                                            <div>
+                                                <label style="font-weight: normal">
+                                                    @php
+                                                        $checked = '';
+                                                    @endphp
+                                                    @foreach ($getAssignTeacherId as $teacherId)
+                                                        @if ($teacherId->teacher_id == $teacher->id)
+                                                            @php
+                                                                $checked = 'checked';
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    <input {{ $checked }} type="checkbox" value="{{ $teacher->id }}"
+                                                        name="teacher_id[]">{{ $teacher->name }} {{ $teacher->last_name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
                                     </div>
 
                                     <div class="form-group">

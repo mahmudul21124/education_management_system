@@ -2,7 +2,7 @@ APP_NAME=School
 APP_ENV=local
 APP_KEY=base64:hU5+3LQdiM/hY7YZDgxNN0zpUBBlcSgRQ6ysLSKs3UU=
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=http://localhost/education_management_system
 
 LOG_CHANNEL=stack
 LOG_DEPRECATIONS_CHANNEL=null

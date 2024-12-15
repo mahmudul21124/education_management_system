@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassModel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -158,4 +159,14 @@ class StudentController extends Controller
         }
         
     }
+
+
+    // Teacher Side Work
+    public function MyStudent()
+    {
+        $data['getRecord'] = User::getTeacherStudent(Auth::user()->id);
+        $data['header_title'] = 'My Student List';
+        return view('teacher.my_student', $data);
+    }
+
 }

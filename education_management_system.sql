@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2024 at 08:02 AM
+-- Generation Time: Dec 15, 2024 at 11:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,8 +43,11 @@ CREATE TABLE `assign_class_teacher` (
 --
 
 INSERT INTO `assign_class_teacher` (`id`, `class_id`, `teacher_id`, `status`, `is_delete`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 12, 0, 0, 1, '2024-12-15 06:59:06', '2024-12-15 06:59:06'),
-(2, 2, 11, 0, 0, 1, '2024-12-15 06:59:06', '2024-12-15 06:59:06');
+(1, 2, 11, 0, 0, 1, '2024-12-15 06:59:06', '2024-12-15 11:35:07'),
+(2, 2, 2, 0, 1, 1, '2024-12-15 06:59:06', '2024-12-15 16:36:22'),
+(6, 1, 12, 0, 0, 1, '2024-12-15 11:10:26', '2024-12-15 11:38:48'),
+(7, 1, 11, 0, 0, 1, '2024-12-15 11:10:26', '2024-12-15 11:10:26'),
+(8, 1, 2, 0, 0, 1, '2024-12-15 11:10:26', '2024-12-15 11:10:26');
 
 -- --------------------------------------------------------
 
@@ -68,7 +71,12 @@ CREATE TABLE `class` (
 
 INSERT INTO `class` (`id`, `name`, `status`, `is_delete`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 'Six', 0, 0, 1, '2024-12-12 16:01:58', '2024-12-12 18:51:29'),
-(2, 'Seven', 0, 0, 1, '2024-12-12 16:03:21', '2024-12-12 18:49:37');
+(2, 'Seven', 0, 0, 1, '2024-12-12 16:03:21', '2024-12-12 18:49:37'),
+(3, 'Eight', 0, 0, 1, '2024-12-15 13:08:43', '2024-12-15 13:08:43'),
+(4, 'Nine', 0, 0, 1, '2024-12-15 13:08:50', '2024-12-15 13:08:50'),
+(5, 'Ten', 0, 0, 1, '2024-12-15 13:08:57', '2024-12-15 13:08:57'),
+(6, 'Eleven', 0, 0, 1, '2024-12-15 13:09:05', '2024-12-15 13:09:05'),
+(7, 'Twelve', 0, 0, 1, '2024-12-15 13:09:18', '2024-12-15 13:09:18');
 
 -- --------------------------------------------------------
 
@@ -98,7 +106,44 @@ INSERT INTO `class_subject` (`id`, `class_id`, `subject_id`, `created_by`, `is_d
 (4, 1, 1, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10'),
 (8, 2, 5, 1, 0, 0, '2024-12-15 05:39:55', '2024-12-15 05:39:55'),
 (9, 2, 2, 1, 0, 0, '2024-12-15 05:39:55', '2024-12-15 05:39:55'),
-(10, 2, 1, 1, 0, 0, '2024-12-15 05:39:55', '2024-12-15 05:39:55');
+(10, 2, 1, 1, 0, 0, '2024-12-15 05:39:55', '2024-12-15 05:39:55'),
+(11, 3, 5, 1, 0, 0, '2024-12-15 20:27:49', '2024-12-15 20:27:49'),
+(12, 3, 7, 1, 0, 0, '2024-12-15 20:27:50', '2024-12-15 20:27:50'),
+(13, 3, 2, 1, 0, 0, '2024-12-15 20:27:50', '2024-12-15 20:27:50'),
+(14, 3, 6, 1, 0, 0, '2024-12-15 20:27:50', '2024-12-15 20:27:50'),
+(15, 3, 1, 1, 0, 0, '2024-12-15 20:27:50', '2024-12-15 20:27:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_subject_timetable`
+--
+
+CREATE TABLE `class_subject_timetable` (
+  `id` int(11) NOT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `subject_id` int(11) DEFAULT NULL,
+  `week_id` int(11) DEFAULT NULL,
+  `start_time` varchar(25) DEFAULT NULL,
+  `end_time` varchar(25) DEFAULT NULL,
+  `room_number` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class_subject_timetable`
+--
+
+INSERT INTO `class_subject_timetable` (`id`, `class_id`, `subject_id`, `week_id`, `start_time`, `end_time`, `room_number`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 1, '09:00', '10:10', '101', '2024-12-15 21:42:15', '2024-12-15 21:42:15'),
+(2, 3, 1, 2, '08:45', '09:45', '103', '2024-12-15 21:42:15', '2024-12-15 21:42:15'),
+(3, 1, 4, 1, '06:47', '09:48', '103', '2024-12-15 21:43:46', '2024-12-15 21:43:46'),
+(4, 2, 1, 1, '07:39', '09:41', '103', '2024-12-15 22:37:11', '2024-12-15 22:37:11'),
+(5, 2, 1, 2, '04:38', '04:40', '12', '2024-12-15 22:37:11', '2024-12-15 22:37:11'),
+(6, 2, 1, 3, '04:38', '06:36', '2', '2024-12-15 22:37:12', '2024-12-15 22:37:12'),
+(7, 2, 1, 6, '19:41', '07:40', '54', '2024-12-15 22:37:12', '2024-12-15 22:37:12'),
+(8, 2, 5, 3, '07:37', '04:39', '4', '2024-12-15 22:37:27', '2024-12-15 22:37:27');
 
 -- --------------------------------------------------------
 
@@ -191,11 +236,15 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`id`, `name`, `type`, `created_by`, `status`, `is_delete`, `created_at`, `updated_at`) VALUES
-(1, 'Bangla', 'Practical', 1, 0, 0, '2024-12-13 22:01:13', '2024-12-13 22:09:43'),
-(2, 'English', 'Theory', 1, 0, 0, '2024-12-13 22:07:09', '2024-12-13 22:50:24'),
+(1, 'Bangla 1st', 'Theory', 1, 0, 0, '2024-12-13 22:01:13', '2024-12-15 13:10:22'),
+(2, 'English 1st', 'Theory', 1, 0, 0, '2024-12-13 22:07:09', '2024-12-15 13:10:32'),
 (3, 'Biology', 'Practical', 1, 0, 0, '2024-12-13 22:07:24', '2024-12-13 22:09:29'),
-(4, 'Biology', 'Practical', 1, 0, 0, '2024-12-13 22:07:36', '2024-12-13 22:50:36'),
-(5, 'Mathemetics', 'Theory', 1, 0, 0, '2024-12-15 05:39:41', '2024-12-15 05:39:41');
+(4, 'Biology', 'Theory', 1, 0, 0, '2024-12-13 22:07:36', '2024-12-15 13:10:07'),
+(5, 'Mathemetics', 'Theory', 1, 0, 0, '2024-12-15 05:39:41', '2024-12-15 05:39:41'),
+(6, 'Bangla 2nd', 'Theory', 1, 0, 0, '2024-12-15 13:10:47', '2024-12-15 13:10:47'),
+(7, 'English 2nd', 'Theory', 1, 0, 0, '2024-12-15 13:10:59', '2024-12-15 13:10:59'),
+(8, 'Science', 'Theory', 1, 0, 0, '2024-12-15 13:11:10', '2024-12-15 13:11:10'),
+(9, 'Science', 'Practical', 1, 0, 0, '2024-12-15 13:11:23', '2024-12-15 13:11:23');
 
 -- --------------------------------------------------------
 
@@ -239,9 +288,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `merital_status`, `address`, `permanent_address`, `qualification`, `work_experience`, `note`, `user_type`, `is_delete`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mahmudul', NULL, 'admin@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, 'cRaLIf1u0Xp4ME0IGfDTzhFWE9OJcKJ5iZaLIRTJVoPulT9GOUwNTtAO0eyK', NULL, '2024-12-10 09:22:59'),
+(1, 'Mahmudul', NULL, 'admin@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, 'hLpQbXOWf8a6iRBDFSI7LPDzJG1ucJJ9CFKYT8N4pGiEOP10cWSV7fjRBPcR', NULL, '2024-12-10 09:22:59'),
 (2, 'teacher', NULL, 'teacher@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 0, 0, NULL, NULL, NULL),
-(3, 'student', 'd', 'student@gmail.com', NULL, '$2y$10$q69o6grdsexsThtUNUEECOhdK5hRM2bH/UCtixfYFdcChmUvfFDY6', 'asdfsadf', 'asdfsdafa', 2, 'Male', '2024-12-05', 'Islam', 'asfsdfsadfsdf', '2024-12-13', '20241214031019unvudyczciekjt3wyett.jpg', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, 'r2CgyY2ZHG2iSdeFQDjALCZpx7vvVxHQQhqdN7JEHWattoZivGVew69Z38Qq', NULL, '2024-12-14 09:19:36'),
+(3, 'student', 'd', 'student@gmail.com', NULL, '$2y$10$q69o6grdsexsThtUNUEECOhdK5hRM2bH/UCtixfYFdcChmUvfFDY6', 'asdfsadf', 'asdfsdafa', 2, 'Male', '2024-12-05', 'Islam', 'asfsdfsadfsdf', '2024-12-13', '20241214031019unvudyczciekjt3wyett.jpg', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, 'Quy6iHVxNT9tDbq9AActsA53DU2eF7p8AcdtbgAqtoQ1NQQZtthY2O9IfQTw', NULL, '2024-12-14 09:19:36'),
 (4, 'parent', NULL, 'parent@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 0, 0, NULL, NULL, NULL),
 (5, 'Mahmudul Haque', NULL, 'rakib21124@gmail.com', NULL, '$2y$10$cksCc3AkKfL3RFQWDzj/kuCFA1R2YSrckHeoZ68St115hLGf/VR8y', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, NULL, '2024-12-10 12:11:20', '2024-12-10 13:12:16'),
 (6, 'Rakib', NULL, 'rakib11@gmail.com', NULL, '$2y$10$7699Z.mHDu4M3uSX1t838.4zOUl0.hr4f8FtvMEQ.BPt8Xh6SLXli', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, NULL, '2024-12-10 12:31:34', '2024-12-12 12:48:23'),
@@ -251,6 +300,32 @@ INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `email_verified_at`, `p
 (10, 'Sadia', 'Islam', 'sadia@gmail.com', NULL, '$2y$10$8XSntFVlrX6xb3cdbaklZOeXq233HFbW3yD.OaHKk.pdIWhTzyAVi', 'S1000', '142165', 2, 'Female', '2024-12-12', 'Islam', '01988674940', '2024-12-14', '20241214031908ijxcxrdlh17pah7bmgwk.png', 'lkjfds', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, NULL, '2024-12-14 09:19:08', '2024-12-14 09:19:08'),
 (11, 'Deanna Riley', 'Hays', 'xakimamy@mailinator.com', NULL, '$2y$10$eEKpy4np/SEIE8L7vgTa5ewgZtXy9e4fEf7TQ9/rqOI.jQIU0UAQq', NULL, NULL, NULL, 'Female', '1997-06-01', 'Rem minim unde praes', '888456546456456', '1977-09-15', '20241214062425tkchn5n6bohc8yqpglmj.jpg', NULL, 'Provident optio qu', 'Iusto maxime iste in', 'Veritatis nihil exce', 'Reprehenderit accus', 'In sit ducimus sed', 'Consequatur odio min', 2, 0, 0, NULL, '2024-12-14 12:08:10', '2024-12-14 12:24:25'),
 (12, 'Stacey Black', 'Calhoun', 'byrekucyp@mailinator.com', NULL, '$2y$10$t3O7xjNRrRlhGBlhjm7.HOLfEd2n8xY7wfIteJtPamna7ZalE/mR2', NULL, NULL, NULL, 'Male', '2022-01-01', 'Cupidatat in ipsa e', '180456345645', '1992-09-12', '20241214060845mfzxrql7jyrndnyk3yk6.jpeg', NULL, 'Et labore sapiente s', 'Fugiat in velit est', 'Enim hic sapiente ul', 'Rerum mollit sint ma', 'Est dolorem aliquam', 'In exercitationem qu', 2, 0, 1, NULL, '2024-12-14 12:08:45', '2024-12-14 12:23:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `week`
+--
+
+CREATE TABLE `week` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `week`
+--
+
+INSERT INTO `week` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Monday', NULL, NULL),
+(2, 'Tuesday', NULL, NULL),
+(3, 'Wednesday', NULL, NULL),
+(4, 'Thursday', NULL, NULL),
+(5, 'Friday', NULL, NULL),
+(6, 'Saturday', NULL, NULL),
+(7, 'Sunday', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -272,6 +347,12 @@ ALTER TABLE `class`
 -- Indexes for table `class_subject`
 --
 ALTER TABLE `class_subject`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `class_subject_timetable`
+--
+ALTER TABLE `class_subject_timetable`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -315,6 +396,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `week`
+--
+ALTER TABLE `week`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -322,19 +409,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assign_class_teacher`
 --
 ALTER TABLE `assign_class_teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `class_subject`
 --
 ALTER TABLE `class_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `class_subject_timetable`
+--
+ALTER TABLE `class_subject_timetable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -358,13 +451,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `week`
+--
+ALTER TABLE `week`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

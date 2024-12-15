@@ -22,7 +22,7 @@
             <div class="container-fluid">
 
                 <!-- general form elements -->
-                <!-- <div class="card card-primary">
+                {{-- <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Search Assign Class Teacher</h3>
                     </div>
@@ -60,7 +60,7 @@
                         </div>
 
                     </form>
-                </div> -->
+                </div> --}}
                 <!-- /.card -->
 
 
@@ -104,7 +104,12 @@
                                                 <td>{{$value->created_by_name}}</td>
                                                 <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
                                                 <td>
-                                                    
+                                                    <a href="{{ route('assign_class_teacher.edit', $value->id) }}"
+                                                        class="btn btn-primary">Edit</a>
+                                                        <a href="{{ route('assign_class_teacher.edit_single', $value->id) }}"
+                                                            class="btn btn-primary">Edit Single</a>
+                                                    <a href="{{ route('assign_class_teacher.delete', $value->id) }}"
+                                                        class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach

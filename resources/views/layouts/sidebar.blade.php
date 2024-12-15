@@ -35,6 +35,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
+                {{-- Admin --}}
                 @if (Auth::user()->user_type == 1)
                     <li class="nav-item">
                         <a href="{{ url('/admin/dashboard') }}"
@@ -77,46 +78,78 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('class.list') }}"
-                            class="nav-link @if (Request::segment(2) == 'class') active @endif">
-                            <i class="nav-icon far fa-user"></i>
+                    <li class="nav-item @if (Request::segment(2) == 'class' ||
+                            Request::segment(2) == 'subject' ||
+                            Request::segment(2) == 'assign_subject' ||
+                            Request::segment(2) == 'assign_class_teacher' ||
+                                Request::segment(2) == 'class_timetable') menu-is-opening menu-open @endif ">
+
+                        <a href="#" class="nav-link @if (Request::segment(2) == 'class' ||
+                                Request::segment(2) == 'subject' ||
+                                Request::segment(2) == 'assign_subject' ||
+                                Request::segment(2) == 'assign_class_teacher' ||
+                                Request::segment(2) == 'class_timetable') active @endif ">
+                            <i class="nav-icon fas fa-table"></i>
                             <p>
-                                Class
+                                Academics
+                                <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('class.list') }}"
+                                    class="nav-link @if (Request::segment(2) == 'class') active @endif">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Class
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('subject.list') }}"
+                                    class="nav-link @if (Request::segment(2) == 'subject') active @endif">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Subject
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('assign_subject.list') }}"
+                                    class="nav-link @if (Request::segment(2) == 'assign_subject') active @endif">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Assign Subject
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('class_timetable.list') }}"
+                                    class="nav-link @if (Request::segment(2) == 'class_timetable') active @endif">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Class Timetable
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('assign_class_teacher.list') }}"
+                                    class="nav-link @if (Request::segment(2) == 'assign_class_teacher') active @endif">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Assign Class Teacher
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('subject.list') }}"
-                            class="nav-link @if (Request::segment(2) == 'subject') active @endif">
-                            <i class="nav-icon far fa-user"></i>
-                            <p>
-                                Subject
-                            </p>
-                        </a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('assign_subject.list') }}"
-                            class="nav-link @if (Request::segment(2) == 'assign_subject') active @endif">
-                            <i class="nav-icon far fa-user"></i>
-                            <p>
-                                Assign Subject
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('assign_class_teacher.list') }}"
-                            class="nav-link @if (Request::segment(2) == 'assign_class_teacher') active @endif">
-                            <i class="nav-icon far fa-user"></i>
-                            <p>
-                                Assign Class Teacher
-                            </p>
-                        </a>
-                    </li>
-
+                    {{-- Teacher --}}
                 @elseif(Auth::user()->user_type == 2)
                     <li class="nav-item">
                         <a href="{{ url('/teacher/dashboard') }}"
@@ -129,8 +162,30 @@
                         </a>
                     </li>
 
-                @elseif(Auth::user()->user_type == 3)
+                    <li class="nav-item">
+                        <a href="{{ url('/teacher/my_student') }}"
+                            class="nav-link @if (Request::segment(2) == 'my_student') active @endif">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                My Student
 
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ url('/teacher/my_class_subject') }}"
+                            class="nav-link @if (Request::segment(2) == 'my_class_subject') active @endif">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                My Class & Subject
+
+                            </p>
+                        </a>
+                    </li>
+
+                    {{-- Student --}}
+                @elseif(Auth::user()->user_type == 3)
                     <li class="nav-item">
                         <a href="{{ url('/student/dashboard') }}"
                             class="nav-link @if (Request::segment(2) == 'dashboard') active @endif">
@@ -153,6 +208,18 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ url('/student/my_timetable') }}"
+                            class="nav-link @if (Request::segment(2) == 'my_timetable') active @endif">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                My Timetable
+
+                            </p>
+                        </a>
+                    </li>
+
+                    {{-- Parent --}}
                 @elseif(Auth::user()->user_type == 4)
                     <li class="nav-item">
                         <a href="{{ url('/parent/dashboard') }}"
