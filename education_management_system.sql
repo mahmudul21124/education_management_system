@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2024 at 07:26 PM
+-- Generation Time: Dec 15, 2024 at 08:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `education_management_system`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assign_class_teacher`
+--
+
+CREATE TABLE `assign_class_teacher` (
+  `id` int(11) NOT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `teacher_id` int(11) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `is_delete` tinyint(4) NOT NULL DEFAULT 0,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `assign_class_teacher`
+--
+
+INSERT INTO `assign_class_teacher` (`id`, `class_id`, `teacher_id`, `status`, `is_delete`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 12, 0, 0, 1, '2024-12-15 06:59:06', '2024-12-15 06:59:06'),
+(2, 2, 11, 0, 0, 1, '2024-12-15 06:59:06', '2024-12-15 06:59:06');
 
 -- --------------------------------------------------------
 
@@ -70,7 +95,10 @@ INSERT INTO `class_subject` (`id`, `class_id`, `subject_id`, `created_by`, `is_d
 (1, 1, 3, 1, 0, 0, '2024-12-13 23:15:20', '2024-12-13 23:46:37'),
 (2, 1, 2, 1, 0, 0, '2024-12-13 23:36:09', '2024-12-14 10:45:57'),
 (3, 1, 4, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-14 10:46:05'),
-(4, 1, 1, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10');
+(4, 1, 1, 1, 0, 0, '2024-12-13 23:36:10', '2024-12-13 23:36:10'),
+(8, 2, 5, 1, 0, 0, '2024-12-15 05:39:55', '2024-12-15 05:39:55'),
+(9, 2, 2, 1, 0, 0, '2024-12-15 05:39:55', '2024-12-15 05:39:55'),
+(10, 2, 1, 1, 0, 0, '2024-12-15 05:39:55', '2024-12-15 05:39:55');
 
 -- --------------------------------------------------------
 
@@ -166,7 +194,8 @@ INSERT INTO `subject` (`id`, `name`, `type`, `created_by`, `status`, `is_delete`
 (1, 'Bangla', 'Practical', 1, 0, 0, '2024-12-13 22:01:13', '2024-12-13 22:09:43'),
 (2, 'English', 'Theory', 1, 0, 0, '2024-12-13 22:07:09', '2024-12-13 22:50:24'),
 (3, 'Biology', 'Practical', 1, 0, 0, '2024-12-13 22:07:24', '2024-12-13 22:09:29'),
-(4, 'Biology', 'Practical', 1, 0, 0, '2024-12-13 22:07:36', '2024-12-13 22:50:36');
+(4, 'Biology', 'Practical', 1, 0, 0, '2024-12-13 22:07:36', '2024-12-13 22:50:36'),
+(5, 'Mathemetics', 'Theory', 1, 0, 0, '2024-12-15 05:39:41', '2024-12-15 05:39:41');
 
 -- --------------------------------------------------------
 
@@ -210,9 +239,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `merital_status`, `address`, `permanent_address`, `qualification`, `work_experience`, `note`, `user_type`, `is_delete`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mahmudul', NULL, 'admin@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, 'cMDFefjusZ9I9EVopQxcetk6USXMxbQULUWXeRNwMtt1MvwBQYRZwON3u9KE', NULL, '2024-12-10 09:22:59'),
+(1, 'Mahmudul', NULL, 'admin@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, 'cRaLIf1u0Xp4ME0IGfDTzhFWE9OJcKJ5iZaLIRTJVoPulT9GOUwNTtAO0eyK', NULL, '2024-12-10 09:22:59'),
 (2, 'teacher', NULL, 'teacher@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 0, 0, NULL, NULL, NULL),
-(3, 'student', 'd', 'student@gmail.com', NULL, '$2y$10$q69o6grdsexsThtUNUEECOhdK5hRM2bH/UCtixfYFdcChmUvfFDY6', 'asdfsadf', 'asdfsdafa', 2, 'Male', '2024-12-05', 'Islam', 'asfsdfsadfsdf', '2024-12-13', '20241214031019unvudyczciekjt3wyett.jpg', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, 'Tw46YKpd9XJsr3zWDGXHSg5rLnibKniQcDnzwrncWpq8aPw1CFRzAcPWGf6q', NULL, '2024-12-14 09:19:36'),
+(3, 'student', 'd', 'student@gmail.com', NULL, '$2y$10$q69o6grdsexsThtUNUEECOhdK5hRM2bH/UCtixfYFdcChmUvfFDY6', 'asdfsadf', 'asdfsdafa', 2, 'Male', '2024-12-05', 'Islam', 'asfsdfsadfsdf', '2024-12-13', '20241214031019unvudyczciekjt3wyett.jpg', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, 3, 0, 0, 'r2CgyY2ZHG2iSdeFQDjALCZpx7vvVxHQQhqdN7JEHWattoZivGVew69Z38Qq', NULL, '2024-12-14 09:19:36'),
 (4, 'parent', NULL, 'parent@gmail.com', NULL, '$2y$10$Aaqq5AhPBx3GhffTjQ7JlO8zlgoMN5loxFBjAlbdKLbEJrSkqFoWi', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 0, 0, NULL, NULL, NULL),
 (5, 'Mahmudul Haque', NULL, 'rakib21124@gmail.com', NULL, '$2y$10$cksCc3AkKfL3RFQWDzj/kuCFA1R2YSrckHeoZ68St115hLGf/VR8y', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, NULL, '2024-12-10 12:11:20', '2024-12-10 13:12:16'),
 (6, 'Rakib', NULL, 'rakib11@gmail.com', NULL, '$2y$10$7699Z.mHDu4M3uSX1t838.4zOUl0.hr4f8FtvMEQ.BPt8Xh6SLXli', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 0, NULL, '2024-12-10 12:31:34', '2024-12-12 12:48:23'),
@@ -226,6 +255,12 @@ INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `email_verified_at`, `p
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `assign_class_teacher`
+--
+ALTER TABLE `assign_class_teacher`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `class`
@@ -284,6 +319,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `assign_class_teacher`
+--
+ALTER TABLE `assign_class_teacher`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
@@ -293,7 +334,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `class_subject`
 --
 ALTER TABLE `class_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -317,7 +358,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

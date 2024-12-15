@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
@@ -87,6 +88,17 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete'])->name('assign_subject.delete');
     Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single'])->name('assign_subject.edit_single');
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
+
+    
+    // Assign Class Teacher Routes
+    Route::get('admin/assign_class_teacher/list', [AssignClassTeacherController::class, 'list'])->name('assign_class_teacher.list');
+    Route::get('admin/assign_class_teacher/add', [AssignClassTeacherController::class, 'add'])->name('assign_class_teacher.add');
+    Route::post('admin/assign_class_teacher/add', [AssignClassTeacherController::class, 'insert']);
+    Route::get('admin/assign_class_teacher/edit/{id}', [AssignClassTeacherController::class, 'edit'])->name('assign_class_teacher.edit');
+    Route::post('admin/assign_class_teacher/edit/{id}', [AssignClassTeacherController::class, 'update']);
+    Route::get('admin/assign_class_teacher/delete/{id}', [AssignClassTeacherController::class, 'delete'])->name('assign_class_teacher.delete');
+    // Route::get('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'edit_single'])->name('assign_class_teacher.edit_single');
+    // Route::post('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
 });
 
 Route::group(['middleware' => 'teacher'], function () {
@@ -95,6 +107,8 @@ Route::group(['middleware' => 'teacher'], function () {
 
 Route::group(['middleware' => 'student'], function () {
     Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('student/my_subject', [SubjectController::class, 'MySubject']);
 });
 
 Route::group(['middleware' => 'parent'], function () {
