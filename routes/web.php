@@ -7,6 +7,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExaminationsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
@@ -106,6 +107,17 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/assign_class_teacher/delete/{id}', [AssignClassTeacherController::class, 'delete'])->name('assign_class_teacher.delete');
     Route::get('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'edit_single'])->name('assign_class_teacher.edit_single');
     Route::post('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
+
+    // Examination 
+    Route::get('admin/examinations/exam/list', [ExaminationsController::class, 'exam_list'])->name('exam.list');
+    Route::get('admin/examinations/exam/add', [ExaminationsController::class, 'exam_add'])->name('exam.add');
+    Route::post('admin/examinations/exam/add', [ExaminationsController::class, 'exam_insert']);
+    Route::get('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_edit'])->name('exam.edit');
+    Route::post('admin/examinations/exam/edit/{id}', [ExaminationsController::class, 'exam_update']);
+    Route::get('admin/examinations/exam/delete/{id}', [ExaminationsController::class, 'exam_delete'])->name('exam.delete');
+
+    Route::get('admin/examinations/exam_schedule', [ExaminationsController::class, 'exam_schedule'])->name('exam_schedule');
+    Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
 });
 
 Route::group(['middleware' => 'teacher'], function () {

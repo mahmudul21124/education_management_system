@@ -148,6 +148,37 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item @if (Request::segment(2) == 'examinations') menu-is-opening menu-open @endif ">
+
+                        <a href="#" class="nav-link @if (Request::segment(2) == 'examinations') active @endif ">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Examinations
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('exam.list') }}"
+                                    class="nav-link @if (Request::segment(3) == 'exam') active @endif">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Exam List
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('exam_schedule') }}"
+                                    class="nav-link @if (Request::segment(3) == 'exam_schedule') active @endif">
+                                    <i class="nav-icon far fa-circle"></i>
+                                    <p>
+                                        Exam Schedule
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
 
                     {{-- Teacher --}}
                 @elseif(Auth::user()->user_type == 2)

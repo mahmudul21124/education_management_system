@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2024 at 11:50 PM
+-- Generation Time: Dec 16, 2024 at 07:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -144,6 +144,59 @@ INSERT INTO `class_subject_timetable` (`id`, `class_id`, `subject_id`, `week_id`
 (6, 2, 1, 3, '04:38', '06:36', '2', '2024-12-15 22:37:12', '2024-12-15 22:37:12'),
 (7, 2, 1, 6, '19:41', '07:40', '54', '2024-12-15 22:37:12', '2024-12-15 22:37:12'),
 (8, 2, 5, 3, '07:37', '04:39', '4', '2024-12-15 22:37:27', '2024-12-15 22:37:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam`
+--
+
+CREATE TABLE `exam` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `note` varchar(2000) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `is_delete` tinyint(4) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `exam`
+--
+
+INSERT INTO `exam` (`id`, `name`, `note`, `created_by`, `is_delete`, `created_at`, `updated_at`) VALUES
+(1, 'Monthly Exam', 'Test-1', 1, 0, '2024-12-16 08:58:01', '2024-12-16 09:09:45'),
+(2, 'Final exam', 'Test-1', 1, 0, '2024-12-16 08:58:11', '2024-12-16 09:13:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_schedule`
+--
+
+CREATE TABLE `exam_schedule` (
+  `id` int(11) NOT NULL,
+  `exam_id` int(11) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `subject_id` int(11) DEFAULT NULL,
+  `exam_date` date DEFAULT NULL,
+  `start_time` varchar(25) DEFAULT NULL,
+  `end_time` varchar(25) DEFAULT NULL,
+  `room_number` varchar(25) DEFAULT NULL,
+  `full_marks` varchar(25) DEFAULT NULL,
+  `passing_mark` varchar(25) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `exam_schedule`
+--
+
+INSERT INTO `exam_schedule` (`id`, `exam_id`, `class_id`, `subject_id`, `exam_date`, `start_time`, `end_time`, `room_number`, `full_marks`, `passing_mark`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, '2024-12-17', '21:50', '22:59', '101', '80', '30', 1, '2024-12-16 13:50:16', '2024-12-16 13:50:16');
 
 -- --------------------------------------------------------
 
@@ -356,6 +409,18 @@ ALTER TABLE `class_subject_timetable`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `exam`
+--
+ALTER TABLE `exam`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `exam_schedule`
+--
+ALTER TABLE `exam_schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -428,6 +493,18 @@ ALTER TABLE `class_subject`
 --
 ALTER TABLE `class_subject_timetable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `exam`
+--
+ALTER TABLE `exam`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `exam_schedule`
+--
+ALTER TABLE `exam_schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
