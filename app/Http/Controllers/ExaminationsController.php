@@ -137,4 +137,9 @@ class ExaminationsController extends Controller
             return redirect()->back()->with('success', "Exam Schedule successfully saved");
         }
     }
+
+    public function MyExamTimetable(Request $request){
+        $data['header_title'] = 'My Exam Timetable';
+        return view('student.my_exam_timetable', $data);
+    }
 }
